@@ -1,0 +1,8 @@
+---
+applications:
+ - name: praveen-springboot-restful-service
+   buildpack: java_buildpack
+   path: target/praveen-springboot-restful-service-1.0.jar
+   domain: cfapps.io
+   memory: 1G
+   instances: 1
