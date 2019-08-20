@@ -32,7 +32,7 @@ public class SpringBootRestfulWebservice {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("PRAVEEN ORUGANTI SPRING BOOT SWAGGER")
 				.description("WELCOME TO SWAGGER CLIENT")
-				.contact(new Contact("PRAVEEN ORUGANTI", "https://praveenoruganti.blogspot.com/", "mnp3pk@gmail.com"))
+				.contact(new Contact("PRAVEEN ORUGANTI", "https://praveenoruganti.wordpress.com/", "mnp3pk@gmail.com"))
 				.license("Apache 2.0").licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html").version("1.0.0")
 				.build();
 	}
