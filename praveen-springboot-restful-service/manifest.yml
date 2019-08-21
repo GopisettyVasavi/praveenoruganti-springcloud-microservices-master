@@ -4,7 +4,7 @@ applications:
    buildpack: java_buildpack
    path: target/praveen-springboot-restful-service-1.0.jar
    services:
-       - praveen-config-server
+       - praveen-spring-config-server
        - praveen-eureka-server
        - praveen-mysql
    domain: cfapps.io

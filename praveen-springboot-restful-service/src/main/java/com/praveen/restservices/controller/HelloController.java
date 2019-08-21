@@ -1,5 +1,7 @@
 package com.praveen.restservices.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,16 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.praveen.restservices.config.RestDataValueProperties;
 import com.praveen.restservices.model.User1;
 
 
 @RestController
+@RefreshScope
 @RequestMapping("/rest/hello")
 public class HelloController {
-
+	
+	@Autowired
+	private RestDataValueProperties prop;
+	
 	@GetMapping("/getMsg")
 	public String greeting() {
-		return "Welcome To Praveen Oruganti User Forum !!";
+		return prop.getName() + " Welcome To Praveen Oruganti User Forum !!";
 	}
 	
 	@GetMapping("/getMsgBean")

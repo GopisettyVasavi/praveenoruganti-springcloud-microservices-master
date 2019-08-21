@@ -9,6 +9,8 @@ eureka:
 
 management:
   endpoint:
+    refresh:
+      enabled: true
     health:
       show-details: always 
   endpoints: 
@@ -59,7 +61,5 @@ info:
    java:
     version: "@java.version@"
   
-  
 
-  
    
