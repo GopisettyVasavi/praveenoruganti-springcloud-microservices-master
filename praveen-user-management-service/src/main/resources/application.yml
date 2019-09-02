@@ -1,0 +1,57 @@
+---
+management:
+  endpoint:
+    refresh:
+      enabled: true
+    health:
+      show-details: always 
+  endpoints: 
+    web:
+      exposure:
+        include: "*"  
+
+server:
+    port: 8080
+    error:
+     include-stacktrace: never
+    
+logging:
+     path: 
+     file: 
+     level: 
+       root: INFO 
+       org: 
+        springframework: 
+         security: INFO
+
+spring:
+   application:
+     name: PRAVEEN-USER-MANAGEMENT-SERVICE
+
+   jpa:
+     show-sql: true 
+     database: MYSQL
+     generate-ddl: true
+   datasource :
+          type: com.zaxxer.hikari.HikariDataSource
+          driver-class-name: com.mysql.cj.jdbc.Driver #org.hsqldb.jdbc.JDBCDriver
+          url: jdbc:mysql://localhost/PRAVEEN-USER-MANAGEMENT-SERVICE?autoreconnect=true #jdbc:hsqldb:hsql://localhost/testdb
+          username: 
+          password:
+          hikari:
+            connectionTimeout : 30000
+            idleTimeout : 600000
+            maxLifetime : 1800000
+            maximumPoolSize : 5
+            
+info:
+  app:
+   name: "@project.name@"
+   description: "@project.description@"
+   version: "@project.version@"
+   encoding: "@project.build.sourceEncoding@"
+   java:
+    version: "@java.version@"
+  
+
+   

@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -39,7 +40,7 @@ public class FlipkartOrderManagementServiceApplication {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("FlipkartOrderManagementService")
 				.description("WELCOME TO SWAGGER CLIENT")
-				.contact(new Contact("PRAVEEN ORUGANTI", "https://praveenoruganti.wordpress.com/", "praveenoruganti@gmail.com"))
+				.contact(new Contact("PRAVEEN ORUGANTI", "https://javafluid.blogspot.com/", "praveenoruganti@gmail.com"))
 				.license("Apache 2.0").licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html").version("1.0.0")
 				.build();
 	}

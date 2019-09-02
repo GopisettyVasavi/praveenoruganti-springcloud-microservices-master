@@ -1,0 +1,12 @@
+---
+applications:
+ - name: praveen-user-management-service
+   buildpack: java_buildpack
+   path: target/praveen-user-management-service-1.0.jar
+   services:
+       - praveen-spring-config-server
+       - praveen-service-registry
+       - praveen-mysql
+   domain: cfapps.io
+   memory: 1G
+   instances: 1
