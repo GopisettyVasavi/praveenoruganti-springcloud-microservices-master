@@ -11,7 +11,7 @@ management:
         include: "*"  
 
 server:
-    port: 8080
+    port: 8081
     error:
      include-stacktrace: never
     
@@ -23,6 +23,15 @@ logging:
        org: 
         springframework: 
          security: INFO
+
+info:
+  app:
+   name: "praveen-user-management-service"
+   description: "Praveen User Management Service"
+   version: "1.0"
+   encoding: "UTF-8"
+   java:
+    version: "1.8"
 
 spring:
    application:
@@ -44,14 +53,14 @@ spring:
             maxLifetime : 1800000
             maximumPoolSize : 5
             
-info:
-  app:
-   name: "User Management Service"
-   description: "User Management Service"
-   version: "1.0"
-   encoding: "UTF-8"
-   java:
-    version: "1.8.0_221"
-  
+   rabbitmq:
+    host: orangutan.rmq.cloudamqp.com
+    port: 5672
+    username: cuorvmqg
+    password: LR7A73-8bydesk5Pp2U6Ad7mEEKtMeHX
+ 
 
-   
+praveen-user-management-service:
+          rabbitmq:
+            queueName: praveenmq
+            topicExchange: praveenexchange     
