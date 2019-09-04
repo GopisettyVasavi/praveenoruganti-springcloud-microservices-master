@@ -38,6 +38,24 @@ spring:
      name: PRAVEEN-USER-MANAGEMENT-SERVICE
    profiles:
     active: dev
+   cache:
+     type: redis
+     redis.cache-null-values: false
+     time-to-live: 600000
+     use-key-prefix: true
+   redis:
+    host: redis-11167.c13.us-east-1-3.ec2.cloud.redislabs.com
+    port: 11167
+    password: u3iwrkG72s7eotE7k176qAqSHepq6VgN
+    database: 
+     name: 79c77e1a-3436-4712-8d3f-99d6eeeae87a
+    jedis:   
+     pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1ms
+      min-idle: 0
+    
 
    jpa:
      show-sql: true 

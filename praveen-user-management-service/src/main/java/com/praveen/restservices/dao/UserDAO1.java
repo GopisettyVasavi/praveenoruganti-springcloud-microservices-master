@@ -5,9 +5,10 @@ import java.util.List;
 import com.praveen.restservices.model.User1;
 
 public interface UserDAO1 {
-	abstract List<User1> findAll1();
-	abstract User1 findUserByName1(String name1);
-	abstract User1 create1(final User1 user1) throws Exception;
-	abstract int delete1(final User1 user1) throws Exception;
+	abstract List<User1> findAll1() throws Exception;
+	abstract User1 findUserById1(String userid1) throws Exception;
+	abstract int create1(final User1 user1) throws Exception;
+	abstract void deleteByUserId1(final String userId1) throws Exception;
+	abstract int updateUserbyId1(User1 user1) throws Exception;
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,25 +20,29 @@ public class UserController1 {
 	@Autowired
 	UserService1 userService1;
 
-	// http://localhost:8090/?userName=PraveenOruganti&userEmail=praveenoruganti@gmail.com&address=Hyderabad
 	@PostMapping("/adduser1")
-	User1 addUser1(User1 user1) throws Exception{
+	int addUser1(User1 user1) throws Exception {
 		return userService1.create1(user1);
 	}
 
 	@GetMapping("/users1")
-	List<User1> findAllUsers1() {		
+	List<User1> findAllUsers1() throws Exception{
 		return userService1.findAll1();
 	}
-	
-	@GetMapping("/findUser1")
-	User1 findUserByName1(@RequestParam String name1) {
-		return userService1.findUserByName1(name1);
+
+	@GetMapping("/finduser1")
+	User1 findUserById1(@RequestParam String userid1) throws Exception {
+		return userService1.findUserById1(userid1);
 	}
-	
+
+	@PutMapping("/updateuser1")
+	int UpdateUserbyId1(User1 userid1) throws Exception {
+		return userService1.updateUserbyId1(userid1);
+	}
+
 	@DeleteMapping("/deleteuser1")
-	int deleteUser1(User1 user1) throws Exception{
-		return userService1.delete1(user1);
+	void deleteByUserId1(String userId1) throws Exception {
+		 userService1.deleteByUserId1(userId1);
 	}
-	
+
 }
