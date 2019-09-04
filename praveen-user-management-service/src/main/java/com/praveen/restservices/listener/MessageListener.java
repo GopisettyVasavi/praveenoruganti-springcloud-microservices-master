@@ -19,7 +19,7 @@ public class MessageListener {
 	private PraveenLogDAO praveenLogDAO;
 
 	@RabbitListener(queues = "${praveen-user-management-service.rabbitmq.queueName}")
-	public void recievedMessage(String message) {
+	public void receivedMessage(String message) {
 		log.info(LocalDate.now().toString());
 		try {
 			Thread.sleep(5000);

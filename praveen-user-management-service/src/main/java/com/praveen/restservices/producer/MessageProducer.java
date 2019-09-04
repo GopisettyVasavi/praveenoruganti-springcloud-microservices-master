@@ -12,15 +12,15 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class MessageProducer {
-
+	
 	@Autowired
 	  private AmqpTemplate amqpTemplate;
 	
 	@Value("${praveen-user-management-service.rabbitmq.queueName}")
-	private static String queueName;
+	private String queueName;
 	
 	@Value("${praveen-user-management-service.rabbitmq.topicExchange}")
-	private static String topicExchange;
+	private String topicExchange;
 	
 	public void produceMsg(String msg){
 		log.info(LocalDate.now().toString());

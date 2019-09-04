@@ -53,9 +53,6 @@ public class UserController {
 	// Autowire the UserService
 	@Autowired
 	private UserService userService;
-	
-	 @Autowired
-	    private MessageProducer messageProducer;
 
 	// getAllUsers Method
 	@ApiOperation(value = "Retrieve list of users")
@@ -124,12 +121,7 @@ public class UserController {
 			throw new UserNameNotFoundException("Username: '" + username + "' not found in User repository");
 		return user;
 
-	}
-		    
-	 @GetMapping("/produce")
-	 public void produce(@RequestParam String message) {
-	  messageProducer.produceMsg(message);
-	    
-	 }
+	} 
+	
 
 }

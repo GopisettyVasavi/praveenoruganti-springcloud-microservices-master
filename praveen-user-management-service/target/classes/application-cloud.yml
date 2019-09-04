@@ -11,7 +11,7 @@ management:
         include: "*"  
 
 server:
-    port: 8081
+    port: 8080
     error:
      include-stacktrace: never
     
@@ -36,6 +36,8 @@ info:
 spring:
    application:
      name: PRAVEEN-USER-MANAGEMENT-SERVICE
+   profiles:
+    active: dev
 
    jpa:
      show-sql: true 
@@ -43,10 +45,10 @@ spring:
      generate-ddl: true
    datasource :
           type: com.zaxxer.hikari.HikariDataSource
-          driver-class-name: com.mysql.cj.jdbc.Driver #org.hsqldb.jdbc.JDBCDriver
-          url: jdbc:mysql://localhost/PRAVEEN-USER-MANAGEMENT-SERVICE?autoreconnect=true #jdbc:hsqldb:hsql://localhost/testdb
-          username: 
-          password:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://b632a0024b63e7:5f3004aed14ada9@us-cdbr-iron-east-02.cleardb.net:3306/ad_0173b1a73afa202?reconnect=true
+          username: b632a0024b63e7
+          password: 5f3004aed14ada9
           hikari:
             connectionTimeout : 30000
             idleTimeout : 600000

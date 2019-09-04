@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -14,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.praveen.restservices.config.PraveenLogRowMapper;
 import com.praveen.restservices.dao.PraveenLogDAO;
 import com.praveen.restservices.model.PraveenLog;
 
@@ -43,6 +45,12 @@ public class PraveenLogDAOImpl implements PraveenLogDAO {
 		int praveenLogId = holder.getKey().intValue();
 		praveenLog.setLogId(praveenLogId);
 		return praveenLog;
+	}
+
+
+	@Override
+	public List<PraveenLog> getAllLogs() {
+		return jdbcTemplate.query("select * from PRAVEENLOG", new PraveenLogRowMapper());
 	}
 
 }
