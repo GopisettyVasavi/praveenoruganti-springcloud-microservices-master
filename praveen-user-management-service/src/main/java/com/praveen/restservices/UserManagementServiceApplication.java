@@ -67,7 +67,7 @@ public class UserManagementServiceApplication {
 	}
 
 	@Bean
-	RedisTemplate<String, User1> redisTemplate1() {
+	RedisTemplate<String, User1> redisTemplate() {
 		RedisTemplate<String, User1> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setConnectionFactory(jedisConnectionFactory());
 		return redisTemplate;
