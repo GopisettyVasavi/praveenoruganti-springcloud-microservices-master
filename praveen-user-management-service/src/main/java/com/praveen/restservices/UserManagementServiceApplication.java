@@ -15,6 +15,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import com.praveen.restservices.config.UserProperties;
 import com.praveen.restservices.model.User1;
 
+import redis.clients.jedis.JedisPoolConfig;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -63,6 +64,12 @@ public class UserManagementServiceApplication {
 		factory.setHostName(userProps.getHostName());
 		factory.setPassword(userProps.getPassword());
 		factory.setPort(userProps.getPort());
+		factory.setUsePool(true);
+		JedisPoolConfig config = new JedisPoolConfig();
+		config.setMaxIdle(userProps.getJedisPoolMaxIdle());
+		config.setMaxTotal(userProps.getJedisPoolMaxActive());
+		config.setMaxWaitMillis(userProps.getJedisPoolMaxWait());
+		config.setMinIdle(userProps.getJedisPoolMinIdle());
 		return factory;
 	}
 

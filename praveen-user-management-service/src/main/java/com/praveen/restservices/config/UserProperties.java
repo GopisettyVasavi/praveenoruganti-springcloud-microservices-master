@@ -22,5 +22,17 @@ public class UserProperties {
 	@Value("${praveen-user-management-service.redis.password}")
 	private String password;
 	
+	@Value("${praveen-user-management-service.redis.jedis.pool.max-active}")
+	private int jedisPoolMaxActive;
+	
+	@Value("${praveen-user-management-service.redis.jedis.pool.max-idle}")
+	private int jedisPoolMaxIdle;
+	
+	@Value("${praveen-user-management-service.redis.jedis.pool.max-wait}")
+	private long jedisPoolMaxWait;
+	
+	@Value("${praveen-user-management-service.redis.jedis.pool.min-idle}")
+	private int jedisPoolMinIdle;
+	
 
 }
