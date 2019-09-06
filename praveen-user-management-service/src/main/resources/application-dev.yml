@@ -9,7 +9,7 @@ management:
     web:
       exposure:
         include: "*"  
-
+  
 server:
     port: 8080
     error:
@@ -46,19 +46,7 @@ spring:
     service-registry:
       auto-registration:
         enabled: false
-   cache:
-      type: redis
-   redis:
-    host: localhost
-    port: 6379
-    password: password
-    jedis:   
-     pool:
-      max-active: 8
-      max-idle: 8
-      max-wait: -1ms
-      min-idle: 0
-    
+ 
    jpa:
      show-sql: true 
      database: MYSQL
@@ -84,4 +72,8 @@ spring:
 praveen-user-management-service:
           rabbitmq:
             queueName: praveenmq
-            topicExchange: praveenexchange     
+            topicExchange: praveenexchange   
+          redis:
+            host: localhost
+            port: 6379
+            password:   
