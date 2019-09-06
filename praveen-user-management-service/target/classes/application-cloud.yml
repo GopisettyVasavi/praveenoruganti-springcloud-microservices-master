@@ -75,5 +75,5 @@ praveen-user-management-service:
              pool:
               max-active: 8
               max-idle: 8
-              max-wait: -1ms
+              max-wait: -1
               min-idle: 0

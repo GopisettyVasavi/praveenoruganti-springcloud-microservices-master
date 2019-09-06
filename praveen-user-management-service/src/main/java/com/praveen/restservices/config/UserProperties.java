@@ -29,7 +29,7 @@ public class UserProperties {
 	private int jedisPoolMaxIdle;
 	
 	@Value("${praveen-user-management-service.redis.jedis.pool.max-wait}")
-	private long jedisPoolMaxWait;
+	private int jedisPoolMaxWait;
 	
 	@Value("${praveen-user-management-service.redis.jedis.pool.min-idle}")
 	private int jedisPoolMinIdle;
