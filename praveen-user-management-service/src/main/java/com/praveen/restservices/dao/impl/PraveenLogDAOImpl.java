@@ -9,6 +9,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Repository;
 
 import com.praveen.restservices.config.PraveenLogRowMapper;
 import com.praveen.restservices.dao.PraveenLogDAO;
+import com.praveen.restservices.handler.CreateLogEvent;
 import com.praveen.restservices.model.PraveenLog;
 
 @Repository
@@ -27,7 +29,9 @@ public class PraveenLogDAOImpl implements PraveenLogDAO {
 	PraveenLogDAOImpl(DataSource dataSource1) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource1);
 	}
-
+	
+	@Autowired
+	ApplicationEventPublisher publisher;
 
 	@Override
 	public PraveenLog createLog(PraveenLog praveenLog) throws Exception {
@@ -43,7 +47,10 @@ public class PraveenLogDAOImpl implements PraveenLogDAO {
 			}
 		}, holder);
 		int praveenLogId = holder.getKey().intValue();
+		System.out.println("Publishing Create Log Event");
 		praveenLog.setLogId(praveenLogId);
+		CreateLogEvent cle= new CreateLogEvent(this,"Praveen");
+		publisher.publishEvent(cle);
 		return praveenLog;
 	}
 
@@ -52,5 +59,4 @@ public class PraveenLogDAOImpl implements PraveenLogDAO {
 	public List<PraveenLog> getAllLogs() {
 		return jdbcTemplate.query("select * from PRAVEENLOG", new PraveenLogRowMapper());
 	}
-
 }
