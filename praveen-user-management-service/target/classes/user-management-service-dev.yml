@@ -35,7 +35,7 @@ info:
 
 spring:
    application:
-     name: PRAVEEN-USER-MANAGEMENT-SERVICE
+     name: praveen-user-management-service
    profiles:
     active: dev
  
