@@ -3,6 +3,7 @@ package com.praveen.ordermanagement.service;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,6 +16,10 @@ public class OrderManagementService {
 
 	@Autowired
 	RestTemplate restTemplate;
+	
+	@Autowired
+	@Value("${praveen-flipkart-ordermanagement-service.billingURL}")
+	private String billingURL;
 
 	public String createOrder(String orderid) throws Exception {
 		try {
@@ -23,7 +28,7 @@ public class OrderManagementService {
 		HttpEntity<String> entity = new HttpEntity<String>(orderid,headers);
 		// call billing service
 		String msg=restTemplate
-		.exchange("http://FLIPKART-BILLING-SERVICE/rest/billingservice/billingorder", HttpMethod.POST, entity, String.class).getBody();
+		.exchange(billingURL, HttpMethod.POST, entity, String.class).getBody();
 		return msg;
 		}catch(Exception  e) {
 			throw new Exception(e);

@@ -10,4 +10,7 @@ server:
   port: 8090
 spring:
   application:
-    name: FLIPKART-ORDERMANAGEMENT-SERVICE
+    name: praveen-flipkart-ordermanagement-service
+    
+praveen-flipkart-ordermanagement-service:
+                   billingURL: http://FLIPKART-BILLING-SERVICE/rest/billingservice/billingorder
