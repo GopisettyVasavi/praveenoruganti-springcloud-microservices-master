@@ -41,7 +41,7 @@ public class UserManagementServiceApplication {
 		return new ApiInfoBuilder().title("PRAVEEN ORUGANTI SPRING BOOT SWAGGER")
 				.description("WELCOME TO SWAGGER CLIENT")
 				.contact(
-						new Contact("PRAVEEN ORUGANTI", "https://javafluid.blogspot.com/", "praveenoruganti@gmail.com"))
+						new Contact("PRAVEEN ORUGANTI", "https://praveenoruganti.blogspot.com/", "praveenoruganti@gmail.com"))
 				.license("Apache 2.0").licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html").version("1.0.0")
 				.build();
 	}
