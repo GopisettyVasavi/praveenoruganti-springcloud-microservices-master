@@ -27,8 +27,19 @@ public class HelloController {
 	
 	@GetMapping("/getMsg")
 	public String greeting() {
-		return prop.getName() + " Welcome To Praveen Oruganti User Forum !!";
+		return prop.getName() + " Welcome To Praveen Oruganti Forum !!";
 	}
+	
+	@GetMapping("/getMsg/user")
+	public String greetingUser() {
+		return prop.getName() + " Welcome User To Praveen Oruganti Forum !!";
+	}
+	
+	@GetMapping("/getMsg/admin")
+	public String greetingAdmin() {
+		return prop.getName() + " Welcome Admin To Praveen Oruganti Forum !!";
+	}		
+	
 	
 	@GetMapping("/getMsgBean")
 	public User1 greetingBean() {		

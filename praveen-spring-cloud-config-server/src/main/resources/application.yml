@@ -9,9 +9,6 @@ spring:
        git:
         uri: https://github.com/praveenoruganti/praveen-spring-config-server
         searchPaths: config
-        
-        
-
 server:
  port: 8888
 
