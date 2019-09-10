@@ -17,5 +17,15 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Praveen Oruganti/.m2/repository/org/springframework/security/oauth/spring-security-oauth2/2.3.5.RELEASE/spring-security-oauth2-2.3.5.RELEASE.jar" sourcepath="C:/Users/Praveen Oruganti/.m2/repository/org/springframework/security/oauth/spring-security-oauth2/2.3.5.RELEASE/spring-security-oauth2-2.3.5.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework.security.oauth"/>
+			<attribute name="maven.artifactId" value="spring-security-oauth2"/>
+			<attribute name="maven.version" value="2.3.5.RELEASE"/>
+			<attribute name="maven.scope" value="runtime"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

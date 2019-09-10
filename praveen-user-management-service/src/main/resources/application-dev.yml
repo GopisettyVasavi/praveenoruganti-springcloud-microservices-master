@@ -81,7 +81,7 @@ spring:
     username: guest
     password: guest
 
-praveen-user-management-service:
+praveen-user-management-service:         
           rabbitmq:
             queueName: praveenmq
             topicExchange: praveenexchange   

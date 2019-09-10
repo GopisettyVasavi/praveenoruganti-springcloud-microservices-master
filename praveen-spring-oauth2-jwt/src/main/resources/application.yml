@@ -1,0 +1,11 @@
+---
+server:
+ port: 8100
+ 
+spring:
+ application:
+   name: praveen-spring-oauth2-jwt
+   
+praveen-spring-oauth2-jwt:
+       signing:
+            key: tptukhydchencritenfoo

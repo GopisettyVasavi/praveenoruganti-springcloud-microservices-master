@@ -5,9 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.hateoas.ResourceSupport;
 
 import com.fasterxml.jackson.annotation.JsonView;
