@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.praveen.restservices.dao.UserDAO1;
-import com.praveen.restservices.entities.User;
 import com.praveen.restservices.model.User1;
 
 @Service
@@ -37,7 +38,7 @@ public class UserService1 {
 			return userDAO1.findUserById1(userid1);
 		}
 	}
-
+	@Transactional(isolation=Isolation.READ_COMMITTED,propagation=Propagation.REQUIRED,readOnly=false,timeout=100,rollbackFor=Exception.class)
 	public int create1(User1 user1) throws Exception {
 		hashOperations.put("USER", String.valueOf(user1.getUserId()), user1);
 		return userDAO1.create1(user1);

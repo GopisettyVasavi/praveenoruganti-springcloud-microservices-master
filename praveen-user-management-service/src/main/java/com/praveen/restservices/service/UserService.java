@@ -3,9 +3,13 @@ package com.praveen.restservices.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.praveen.restservices.entities.User;
@@ -29,6 +33,7 @@ public class UserService {
 	}
 
 	// CreateUser Method
+	@Transactional(value=TxType.REQUIRED,rollbackOn=Exception.class)
 	public User createUser(User user) throws UserExistsException{
 		//if user exist using username
 		User existingUser = userRepository.findByUsername(user.getUsername());

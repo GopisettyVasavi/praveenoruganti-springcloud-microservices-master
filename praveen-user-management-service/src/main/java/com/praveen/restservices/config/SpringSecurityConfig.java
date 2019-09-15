@@ -23,17 +23,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	// Authentication based on role
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.inMemoryAuthentication()
-//		       .withUser("praveen")
-//		       .password("pcfadmin")
-//		       .roles("ADMIN")
-//			   .and()
-//			   .withUser("prasad")
-//			   .password("pcfuser")
-//			   .roles("USER");
+		auth.inMemoryAuthentication()
+		       .withUser("praveen")
+		       .password("pcfadmin")
+		       .roles("ADMIN")
+			   .and()
+			   .withUser("prasad")
+			   .password("pcfuser")
+			   .roles("USER");
 		
-		auth.jdbcAuthentication()
-		    .dataSource(datasource);		   
+//		auth.jdbcAuthentication()
+//		    .dataSource(datasource);		   
 	}
 	
 	@Bean
