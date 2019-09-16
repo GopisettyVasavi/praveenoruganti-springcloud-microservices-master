@@ -29,7 +29,8 @@ public class JPQLTest {
 	@Test
 	@DirtiesContext
 	public void jpqlTest() {
-		Query q= em.createQuery("Select c from Course c");
+		//Query q= em.createQuery("Select c from Course c");
+		Query q= em.createNamedQuery("query_get_all_courses");
 		log.info("Select c from Course c ->  {}",q.getResultList()); 
 		//Output: Select c from Course c ->  [Course[CORE JAVA], Course[SPRING], Course[JPA HIBERNATE], Course[SQL in 25 Days], Course[Maven in 25 Days]]		
 	}
@@ -37,7 +38,9 @@ public class JPQLTest {
 	@Test
 	@DirtiesContext
 	public void jpqltypedTest() {
-		TypedQuery<Course> q= em.createQuery("Select c from Course c",Course.class);
+		//TypedQuery<Course> q= em.createQuery("Select c from Course c",Course.class);
+		
+		TypedQuery<Course>  q= em.createNamedQuery("query_get_all_courses",Course.class);
 		List<Course> qlist=q.getResultList();
 		log.info("Select c from Course c ->  {}",qlist);
 		//Output: Select c from Course c ->  [Course[CORE JAVA], Course[SPRING], Course[JPA HIBERNATE], Course[SQL in 25 Days], Course[Maven in 25 Days]]		
@@ -46,7 +49,8 @@ public class JPQLTest {
 	@Test
 	@DirtiesContext
 	public void jpqlwhere() {
-		TypedQuery<Course> q= em.createQuery("Select c from Course c where name like '%25%' ",Course.class);
+		//TypedQuery<Course> q= em.createQuery("Select c from Course c where name like '%25%' ",Course.class);
+		TypedQuery<Course> q= em.createNamedQuery("query_get_like25",Course.class);
 		List<Course> qlist=q.getResultList();
 		log.info("Select c from Course c where name like '%25%' ->  {}",qlist);
 		//Output: Select c from Course c where name like '%25%' ->  [Course[SQL in 25 Days], Course[Maven in 25 Days]]

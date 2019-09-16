@@ -1,18 +1,38 @@
 package com.praveen.jpa.hibernate.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 
 @Entity
+@NamedQueries(
+		value= {
+				 @NamedQuery(name="query_get_all_courses",query="Select c from Course c"),
+				 @NamedQuery(name="query_get_like25",query="Select c from Course c where name like '%25%'")		
+       			}
+      )
+//@NamedQuery(name="query_get_all_courses",query="Select c from Course c")
 public class Course {
 
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	public String name;
+	public String name;	
+	
+	@CreationTimestamp
+	private LocalDateTime createdDate;
+	
+	@UpdateTimestamp
+	private LocalDateTime lastUpdatedDate;
 	
 	protected Course() {
 		
@@ -31,6 +51,12 @@ public class Course {
 
 	public Long getId() {
 		return id;
+	}
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+	public LocalDateTime getLastUpdatedDate() {
+		return lastUpdatedDate;
 	}
 	@Override
 	public String toString() {
