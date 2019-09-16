@@ -1,13 +1,50 @@
 package com.praveen.restservices.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.praveen.restservices.entities.User;
 
-//Repository
 @Repository
-public interface UserRepository  extends JpaRepository<User, Long>{
+public class UserRepository {
+	
+	@PersistenceContext
+	EntityManager entityManager;
 
-	User findByUsername(String username);
+	public User findById(Long id) {	
+		Optional<User> optionalUser = Optional.of(entityManager.find(User.class, id));
+		if (!optionalUser.isPresent()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"User Not found in user Repository, provide the correct user id");
+		}
+		return optionalUser.get();
+	}
+
+	public void save(User user) {	
+		if(user.getUserid() ==null) {
+			entityManager.persist(user);
+		}else {
+			entityManager.merge(user);
+		}
+		
+	}
+
+	public void deleteById(Long id) {
+		Optional<User> optionalUser = Optional.of(findById(id));		
+		entityManager.remove(optionalUser.get());
+	}
+
+	public List<User> findAll() {		
+		return entityManager.createNamedQuery("find_all_users",User.class).getResultList();
+	}
+
+	
+
+	
 }

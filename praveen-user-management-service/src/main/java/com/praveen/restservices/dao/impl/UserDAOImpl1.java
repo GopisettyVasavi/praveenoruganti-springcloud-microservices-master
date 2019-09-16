@@ -1,18 +1,20 @@
 package com.praveen.restservices.dao.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
-import com.praveen.restservices.config.UserRowMapper1;
 import com.praveen.restservices.dao.UserDAO1;
 import com.praveen.restservices.model.User1;
 
-@Service
+@Repository
 public class UserDAOImpl1 implements UserDAO1 {
 	private JdbcTemplate jdbcTemplate;
 
@@ -21,6 +23,18 @@ public class UserDAOImpl1 implements UserDAO1 {
 		this.jdbcTemplate = new JdbcTemplate(dataSource1);
 	}
 
+	class UserRowMapper1 implements RowMapper<User1> {
+		@Override
+		public User1 mapRow(ResultSet rs, int rowNum) throws SQLException {
+			User1 user1 = new User1();
+			user1.setUserId(rs.getInt("userId"));
+			user1.setUserName(rs.getString("userName"));
+			user1.setUserEmail(rs.getString("userEmail"));
+			user1.setAddress(rs.getString("address"));
+			return user1;
+		}
+	}
+	
 	@Override
 	public List<User1> findAll1() throws Exception {
 		List<User1> userList = jdbcTemplate.query("select * from users1", new UserRowMapper1());

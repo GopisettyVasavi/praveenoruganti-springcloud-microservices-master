@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,13 +23,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.praveen.restservices.entities.User;
 import com.praveen.restservices.exceptions.UserExistsException;
-import com.praveen.restservices.exceptions.UserNameNotFoundException;
 import com.praveen.restservices.exceptions.UserNotFoundException;
 import com.praveen.restservices.service.UserService;
 
@@ -98,10 +100,13 @@ public class UserController {
 	// updateUserById
 	@PutMapping("/{id}")
 	@CachePut(value = "users", key = "#user.id")
-	public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
+	public ResponseEntity<Void>  updateUser(@PathVariable("id") Long id, @RequestBody User user,UriComponentsBuilder builder) {
 
 		try {
-			return userService.updateUserById(id, user);
+			userService.updateUserById(id, user);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(builder.path("/rest/users/{id}").buildAndExpand(user.getUserid()).toUri());
+			return new ResponseEntity<Void>(headers, HttpStatus.OK);
 		} catch (UserNotFoundException ex) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
 		}
@@ -114,15 +119,11 @@ public class UserController {
 		userService.deleteUserById(id);
 	}
 
-	// getUserByUsername
-	@GetMapping("/byusername/{username}")
-	public User getUserByUsername(@PathVariable("username") String username) throws UserNameNotFoundException {
-		User user = userService.getUserByUsername(username);
-		if (user == null)
-			throw new UserNameNotFoundException("Username: '" + username + "' not found in User repository");
-		return user;
-
-	} 
+	@ResponseBody
+	@ExceptionHandler(HttpMediaTypeNotAcceptableException.class)
+	public String handleHttpMediaTypeNotAcceptableException() {
+	    return "acceptable MIME type:" + MediaType.APPLICATION_JSON_VALUE;
+	}
 	
 
 }
