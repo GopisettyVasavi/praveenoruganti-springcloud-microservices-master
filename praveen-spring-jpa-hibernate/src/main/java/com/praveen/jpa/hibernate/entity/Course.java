@@ -2,6 +2,7 @@ package com.praveen.jpa.hibernate.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,7 +27,8 @@ public class Course {
 	@GeneratedValue
 	private Long id;
 	
-	public String name;	
+	@Column(nullable=false)
+	private String name;	
 	
 	@CreationTimestamp
 	private LocalDateTime createdDate;
