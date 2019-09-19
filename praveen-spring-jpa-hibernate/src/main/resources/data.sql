@@ -19,3 +19,10 @@ values(20002,'Prasad',40002);
 insert into Student(id,name,passport_id)
 values(20003,'Kiran',40003);
 
+insert into Review(id,rating,description,course_id)
+values(50001,'FIVE', 'Great Course',10003);
+insert into Review(id,rating,description,course_id)
+values(50002,'FOUR', 'Wonderful Course',10003);
+insert into Review(id,rating,description,course_id)
+values(50003,'FIVE', 'Awesome Course',10005);
+

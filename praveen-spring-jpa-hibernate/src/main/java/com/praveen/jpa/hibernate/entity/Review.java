@@ -1,8 +1,10 @@
 package com.praveen.jpa.hibernate.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -15,6 +17,9 @@ public class Review {
 	private String description;	
 	
 	private String rating;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Course course;
 
 	protected Review() {
 		
@@ -44,6 +49,12 @@ public class Review {
 		return id;
 	}
 	
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
 	@Override
 	public String toString() {
 		return String.format("Review[%s %s]", description,rating);
