@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.praveen.jpa.hibernate.entity.Course;
 import com.praveen.jpa.hibernate.entity.Passport;
 import com.praveen.jpa.hibernate.entity.Student;
 
@@ -39,5 +40,43 @@ public class StudentRepository {
 		Student student= new Student("Varma");
 		student.setPassport(passport);
 		em.persist(student);
+	}
+	
+	public void someOperationToUnderstandPersistenceContext() {
+		//Database Operation 1 - Retrieve student
+		Student student = em.find(Student.class, 20001L);
+		//Persistence Context (student)
+		
+		
+		//Database Operation 2 - Retrieve passport
+		Passport passport = student.getPassport();
+		//Persistence Context (student, passport)
+
+		//Database Operation 3 - update passport
+		passport.setNumber("E123457");
+		//Persistence Context (student, passport++)
+		
+		//Database Operation 4 - update student
+		student.setName("Ranga - updated");
+		//Persistence Context (student++ , passport++)
+	}
+	
+	public void insertHardcodedStudentAndCourse(){
+		Student student = new Student("Naveen");
+		Course course = new Course("JPA HIBERNATE");
+		em.persist(student);
+		em.persist(course);
+		
+		student.addCourse(course);
+		course.addStudent(student);
+		em.persist(student);
+	}
+
+	public void insertStudentAndCourse(Student student, Course course){
+		student.addCourse(course);
+		course.addStudent(student);
+
+		em.persist(student);
+		em.persist(course);
 	}
 }

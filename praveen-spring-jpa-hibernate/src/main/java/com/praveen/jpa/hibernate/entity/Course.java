@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -37,6 +38,9 @@ public class Course {
 
 	@OneToMany(mappedBy="course",fetch=FetchType.LAZY) // by default it is lazy fetching
 	private List<Review> reviews = new ArrayList<Review>();
+	
+	@ManyToMany(mappedBy="courses")
+	private List<Student> students= new ArrayList<Student>();
 
 	protected Course() {
 
@@ -76,6 +80,19 @@ public class Course {
 
 	public void removeReview(Review review) {
 		this.reviews.remove(review);
+	}
+	
+	public List<Student> getStudents() {
+		return students;
+	}
+
+
+	public void addStudent(Student student) {
+		this.students.add(student);
+	}
+
+	public void removeStudent(Student student) {
+		this.students.remove(student);
 	}
 
 	@Override

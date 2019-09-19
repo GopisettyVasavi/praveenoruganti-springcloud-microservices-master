@@ -32,7 +32,7 @@ public class Passport {
 		return number;
 	}
 
-	public void number(String number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
