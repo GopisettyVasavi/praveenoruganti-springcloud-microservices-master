@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @NamedQueries(value = { @NamedQuery(name = "query_get_all_courses", query = "Select c from Course c"),
 		@NamedQuery(name = "query_get_like25", query = "Select c from Course c where name like '%25%'") })
 //@NamedQuery(name="query_get_all_courses",query="Select c from Course c")
+@Cacheable
 public class Course {
 
 	@Id
@@ -38,8 +39,8 @@ public class Course {
 	@UpdateTimestamp
 	private LocalDateTime lastUpdatedDate;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="course",fetch=FetchType.LAZY) // by default it is lazy fetching
+	//@JsonIgnore
+	@OneToMany(mappedBy="course") // by default it is lazy fetching
 	private List<Review> reviews = new ArrayList<Review>();
 	
 	@JsonIgnore

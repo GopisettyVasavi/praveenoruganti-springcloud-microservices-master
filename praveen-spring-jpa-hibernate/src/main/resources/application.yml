@@ -12,11 +12,24 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     properties:
+      javax:
+       persistence:
+         sharedCache:
+           mode: ENABLE_SELECTIVE
       hibernate:
         generate_statistics: true
         format-sql: true
+        batch_size: 10
+        cache:
+         use_second_level_cache: true
+         region:
+           factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+             
 logging:
    level:
+    net:
+     sf:
+      ehcahe: debug
      org:
       hibernate:
         stat: debug
@@ -25,4 +38,5 @@ logging:
 server:
   port: 9080
   
+ 
  
