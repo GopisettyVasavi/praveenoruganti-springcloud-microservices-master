@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @NamedQueries(value = { @NamedQuery(name = "query_get_all_courses", query = "Select c from Course c"),
 		@NamedQuery(name = "query_get_like25", query = "Select c from Course c where name like '%25%'") })
@@ -36,9 +38,11 @@ public class Course {
 	@UpdateTimestamp
 	private LocalDateTime lastUpdatedDate;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="course",fetch=FetchType.LAZY) // by default it is lazy fetching
 	private List<Review> reviews = new ArrayList<Review>();
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="courses")
 	private List<Student> students= new ArrayList<Student>();
 
