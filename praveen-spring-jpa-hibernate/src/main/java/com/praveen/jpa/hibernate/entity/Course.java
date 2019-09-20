@@ -40,13 +40,13 @@ public class Course {
 	private LocalDateTime lastUpdatedDate;
 
 	//@JsonIgnore
-	@OneToMany(mappedBy="course") // by default it is lazy fetching
+	@OneToMany(mappedBy="course") // by default it is lazy fetch
 	private List<Review> reviews = new ArrayList<Review>();
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy="courses")
+	@ManyToMany(mappedBy="courses") // by default it is lazy fetch
 	private List<Student> students= new ArrayList<Student>();
-
+	
 	protected Course() {
 
 	}

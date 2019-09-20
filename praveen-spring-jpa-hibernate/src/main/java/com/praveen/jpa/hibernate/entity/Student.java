@@ -23,11 +23,11 @@ public class Student {
 	
 	@Column(nullable=false)
 	private String name;	
-	
-	@OneToOne(fetch=FetchType.LAZY)
+	 
+	@OneToOne(fetch=FetchType.LAZY) // by default it is eager fetch
 	private Passport passport; // SELECT * FROM STUDENT,PASSPORT WHERE STUDENT.PASSPORT_ID= PASSPORT.ID
 
-	@ManyToMany
+	@ManyToMany // by default it  is lazy fetch
 	@JoinTable(name="STUDENT_COURSE",	
 	joinColumns=	@JoinColumn(name="STUDENT_ID"),
 	inverseJoinColumns=@JoinColumn(name="COURSE_ID"))

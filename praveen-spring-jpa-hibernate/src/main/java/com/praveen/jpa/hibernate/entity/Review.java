@@ -18,7 +18,7 @@ public class Review {
 	
 	private String rating;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER) // by default it is eager fetch
 	private Course course;
 
 	protected Review() {
