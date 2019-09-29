@@ -16,18 +16,25 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.praveen.restservices.config.RestDataValueProperties;
 import com.praveen.restservices.model.User1;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @RestController
 @RefreshScope
+@Slf4j
 @RequestMapping("/rest/hello")
 public class HelloController {
 	
 	@Autowired
 	private RestDataValueProperties prop;
 	
+	
 	@GetMapping("/getMsg")
 	public String greeting() {
-		return prop.getName() + " Welcome To Praveen Oruganti Forum !!";
+		log.info("HelloController.greeting() Start");
+		String msg=prop.getName() + " Welcome To Praveen Oruganti Forum !!";
+		log.info("HelloController.greeting() End");
+		return msg;
 	}
 	
 	@GetMapping("/getMsg/user")
