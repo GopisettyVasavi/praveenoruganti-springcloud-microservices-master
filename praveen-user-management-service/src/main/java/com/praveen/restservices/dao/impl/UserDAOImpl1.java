@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -36,6 +37,7 @@ public class UserDAOImpl1 implements UserDAO1 {
 	}
 	
 	@Override
+	@Transactional
 	public List<User1> findAll1() throws Exception {
 		List<User1> userList = jdbcTemplate.query("select * from users1", new UserRowMapper1());
 		if (userList.size() > 0) {
@@ -47,6 +49,7 @@ public class UserDAOImpl1 implements UserDAO1 {
 	}
 
 	@Override
+	@Transactional
 	public User1 findUserById1(String userid1) throws Exception {
 		if (isUserExistsByID(userid1)) {
 			User1 user1 = jdbcTemplate.queryForObject("select * from users1 where userId=?",
@@ -58,6 +61,7 @@ public class UserDAOImpl1 implements UserDAO1 {
 	}
 
 	@Override
+	@Transactional
 	public int create1(User1 user1) throws Exception {
 		if (!isUserExistsByID(String.valueOf(user1.getUserId())) && !isUserExists(user1)) {
 			final String insertSql = "insert into users1(userId,userName,userEmail,address) values(?,?,?,?)";
@@ -69,6 +73,7 @@ public class UserDAOImpl1 implements UserDAO1 {
 	}
 
 	@Override
+	@Transactional
 	public void deleteByUserId1(String userId1) throws Exception {
 		if (isUserExistsByID(userId1)) {
 			final String deleteSql = "delete from users1 where userId=?";

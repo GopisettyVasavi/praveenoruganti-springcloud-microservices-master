@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -34,6 +35,7 @@ public class PraveenLogDAOImpl implements PraveenLogDAO {
 	ApplicationEventPublisher publisher;
 
 	@Override
+	@Transactional
 	public PraveenLog createLog(PraveenLog praveenLog) throws Exception {
 		final String sql = "insert into PRAVEENLOG(PRAVEENLOG_MESSAGE,PRAVEENLOG_DATE) values(?,?)";
 		KeyHolder holder = new GeneratedKeyHolder();
@@ -56,6 +58,7 @@ public class PraveenLogDAOImpl implements PraveenLogDAO {
 
 
 	@Override
+	@Transactional
 	public List<PraveenLog> getAllLogs() {
 		return jdbcTemplate.query("select * from PRAVEENLOG", new PraveenLogRowMapper());
 	}

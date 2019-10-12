@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,7 @@ public class UserRepository {
 	@PersistenceContext
 	EntityManager entityManager;
 
+	@Transactional
 	public User findById(Long id) {	
 		Optional<User> optionalUser = Optional.of(entityManager.find(User.class, id));
 		if (!optionalUser.isPresent()) {
@@ -26,6 +28,7 @@ public class UserRepository {
 		return optionalUser.get();
 	}
 
+	@Transactional
 	public void save(User user) {	
 		if(user.getUserid() ==null) {
 			entityManager.persist(user);
@@ -35,11 +38,13 @@ public class UserRepository {
 		
 	}
 
+	@Transactional
 	public void deleteById(Long id) {
 		Optional<User> optionalUser = Optional.of(findById(id));		
 		entityManager.remove(optionalUser.get());
 	}
-
+	
+	@Transactional
 	public List<User> findAll() {		
 		return entityManager.createNamedQuery("find_all_users",User.class).getResultList();
 	}
