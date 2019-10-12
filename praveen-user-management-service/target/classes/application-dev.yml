@@ -53,10 +53,10 @@ spring:
    cloud:
     config:     
      uri: http://localhost:8888
-   security:
-    user:
-      name: praveen
-      password: pcf
+#   security:
+#    user:
+#      name: praveen
+#      password: pcf
    
    jpa:
      show-sql: true 
