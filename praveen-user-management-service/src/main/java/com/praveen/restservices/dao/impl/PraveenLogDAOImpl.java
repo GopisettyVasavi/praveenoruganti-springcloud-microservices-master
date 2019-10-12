@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -16,6 +15,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.praveen.restservices.config.PraveenLogRowMapper;
 import com.praveen.restservices.dao.PraveenLogDAO;
