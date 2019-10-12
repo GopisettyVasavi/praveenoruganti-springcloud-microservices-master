@@ -26,7 +26,7 @@ server:
      include-stacktrace: never
     
 logging:
-     path: D:\
+     path: 
      file: user-management-service.log
      level: 
        root: INFO 

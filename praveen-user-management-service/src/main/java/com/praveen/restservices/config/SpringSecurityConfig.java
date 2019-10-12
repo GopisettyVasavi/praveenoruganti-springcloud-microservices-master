@@ -36,10 +36,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 //		    .dataSource(datasource);		   
 	}
 	
-	@Bean
-	public PasswordEncoder getPasswordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
-	}
+//	@Bean
+//	public PasswordEncoder getPasswordEncoder() {
+//		return NoOpPasswordEncoder.getInstance();
+//	}
 
 	// Authorization based on role
 	@Override
