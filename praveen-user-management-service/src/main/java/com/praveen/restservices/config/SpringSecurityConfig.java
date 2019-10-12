@@ -33,7 +33,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 //			   .roles("USER");
 		
 //		auth.jdbcAuthentication()
-//		    .dataSource(datasource);		   
+//		    .dataSource(datasource);	
+		
 	}
 	
 //	@Bean
@@ -49,6 +50,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 //			   .antMatchers("/rest/hello/getMsg/user").hasAnyRole("USER","ADMIN")
 //		       .antMatchers("/").permitAll()		       
 //		       .and().formLogin();
+		http .csrf().disable() .authorizeRequests() .anyRequest().permitAll(); 
 	}
 
 }
