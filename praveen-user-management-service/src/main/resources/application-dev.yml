@@ -34,7 +34,7 @@ logging:
         springframework: 
          security: INFO
          jdbc:
-          core: TRACE
+          core: INFO
 
 info:
   app:
