@@ -4,18 +4,10 @@ import static springfox.documentation.builders.PathSelectors.regex;
 import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
 
-import com.praveen.restservices.config.UserProperties;
-import com.praveen.restservices.model.User1;
-
-import redis.clients.jedis.JedisPoolConfig;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -29,7 +21,7 @@ public class UserManagementServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserManagementServiceApplication.class, args);
-	}
+	}	
 
 	@Bean
 	public Docket configDock() {
@@ -40,45 +32,15 @@ public class UserManagementServiceApplication {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("PRAVEEN ORUGANTI SPRING BOOT SWAGGER")
 				.description("WELCOME TO SWAGGER CLIENT")
-				.contact(
-						new Contact("PRAVEEN ORUGANTI", "https://praveenoruganti.blogspot.com/", "praveenoruganti@gmail.com"))
+				.contact(new Contact("PRAVEEN ORUGANTI", "https://praveenoruganti.blogspot.com/",
+						"praveenoruganti@gmail.com"))
 				.license("Apache 2.0").licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html").version("1.0.0")
 				.build();
 	}
-	
-	
 
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
-	
-	@Autowired
-	private UserProperties userProps;
-
-	@SuppressWarnings("deprecation")
-	@Bean
-	@Primary
-	JedisConnectionFactory jedisConnectionFactory() {		
-		JedisConnectionFactory factory =new JedisConnectionFactory();
-		factory.setHostName(userProps.getHostName());
-		factory.setPassword(userProps.getPassword());
-		factory.setPort(userProps.getPort());
-		factory.setUsePool(true);
-		JedisPoolConfig config = new JedisPoolConfig();
-		config.setMaxIdle(userProps.getJedisPoolMaxIdle());
-		config.setMaxTotal(userProps.getJedisPoolMaxActive());
-		config.setMaxWaitMillis(userProps.getJedisPoolMaxWait());
-		config.setMinIdle(userProps.getJedisPoolMinIdle());
-		return factory;
-	}
-
-	@Bean
-	RedisTemplate<String, User1> redisTemplate() {
-		RedisTemplate<String, User1> redisTemplate = new RedisTemplate<>();
-		redisTemplate.setConnectionFactory(jedisConnectionFactory());
-		return redisTemplate;
-	}	
-	
 
 }

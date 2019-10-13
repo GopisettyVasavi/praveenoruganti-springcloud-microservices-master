@@ -2,8 +2,8 @@
 
 eureka:
   client:
-    registerWithEureka: true
-    fetchRegistry: true
+    registerWithEureka: false
+    fetchRegistry: false
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
   instance:
@@ -87,18 +87,12 @@ spring:
     port: 5672
     username: guest
     password: guest
+    
+   redis:
+      host: localhost
+      port: 6379
 
 praveen-user-management-service:         
           rabbitmq:
             queueName: praveenmq
-            topicExchange: praveenexchange   
-          redis:
-            host: localhost
-            port: 6379
-            password:
-            jedis:   
-             pool:
-              max-active: 8
-              max-idle: 8
-              max-wait: -1
-              min-idle: 0
+            topicExchange: praveenexchange

@@ -14,13 +14,13 @@ import com.praveen.restservices.dao.UserDAO1;
 import com.praveen.restservices.model.User1;
 
 @Service
-public class UserService1 {
+public class User1Service {
 	@Autowired
 	private UserDAO1 userDAO1;
 	private HashOperations hashOperations;	
 	private RedisTemplate redisTemplate;
 	@Autowired
-	public UserService1(RedisTemplate redisTemplate) {	
+	public User1Service(RedisTemplate redisTemplate) {	
 		this.redisTemplate = redisTemplate;
 		this.hashOperations = redisTemplate.opsForHash();
 	}
