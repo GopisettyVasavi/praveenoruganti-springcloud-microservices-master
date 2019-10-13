@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @FeignClient(name="praveen-flipkart-billing-service" ) //Service Id of Billing service 
 public interface FeignBillingServiceProxy {
-	@PostMapping("/billingorder")
+	@PostMapping("/rest/billingservice/billingorder")
 	public String createOrder(String orderid);
 
 }
