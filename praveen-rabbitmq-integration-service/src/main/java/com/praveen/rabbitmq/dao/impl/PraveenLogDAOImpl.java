@@ -36,6 +36,7 @@ public class PraveenLogDAOImpl implements PraveenLogDAO {
 	@Override
 	@Transactional
 	public PraveenLog createLog(PraveenLog praveenLog) throws Exception {
+		System.out.println("Message Listener Pushed the Message "+praveenLog.getLogMessage()+" to mysql db ");
 		final String sql = "insert into PRAVEENLOG(PRAVEENLOG_MESSAGE,PRAVEENLOG_DATE) values(?,?)";
 		KeyHolder holder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -48,7 +49,6 @@ public class PraveenLogDAOImpl implements PraveenLogDAO {
 			}
 		}, holder);
 		int praveenLogId = holder.getKey().intValue();
-		System.out.println("Publishing Create Log Event");
 		praveenLog.setLogId(praveenLogId);		
 		return praveenLog;
 	}
