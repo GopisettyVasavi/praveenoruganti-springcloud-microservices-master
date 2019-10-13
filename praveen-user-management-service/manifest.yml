@@ -7,7 +7,8 @@ applications:
        - praveen-spring-config-server
        - praveen-service-registry
        - praveen-mysql
-       - praveen-rabbitmq      
+       - praveen-rabbitmq 
+       - praveen-redis     
    domain: cfapps.io
    memory: 1G
    instances: 1
