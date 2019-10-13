@@ -5,6 +5,9 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,10 +19,18 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @Service
+@RibbonClient
 public class OrderManagementService {
 
 	@Autowired
 	RestTemplate restTemplate;
+	
+	  @LoadBalanced
+	  @Bean
+	  RestTemplate restTemplate(){
+	    return new RestTemplate();
+	  }
+
 
 	@Autowired
 	@Value("${praveen-flipkart-ordermanagement-service.billingURL}")
@@ -32,8 +43,7 @@ public class OrderManagementService {
 					@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value="5"),					
 					@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value="50"),
 					@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value="5000")
-    })
-					
+    })					
 			
 	public String createOrder(String orderid) throws Exception {
 		try {
