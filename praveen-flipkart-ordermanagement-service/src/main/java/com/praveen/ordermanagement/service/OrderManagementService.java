@@ -5,8 +5,6 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,13 +20,6 @@ public class OrderManagementService {
 
 	@Autowired
 	RestTemplate restTemplate;
-	
-	  @LoadBalanced
-	  @Bean
-	  RestTemplate restTemplate(){
-	    return new RestTemplate();
-	  }
-
 
 	@Autowired
 	@Value("${praveen-flipkart-ordermanagement-service.billingURL}")
