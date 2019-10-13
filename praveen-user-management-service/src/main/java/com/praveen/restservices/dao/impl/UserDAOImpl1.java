@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,6 +19,7 @@ import com.praveen.restservices.model.User1;
 
 @Repository
 public class UserDAOImpl1 implements UserDAO1 {
+	final Logger logger =LoggerFactory.getLogger(UserDAOImpl1.class);
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
@@ -64,6 +67,7 @@ public class UserDAOImpl1 implements UserDAO1 {
 	@Transactional
 	public int create1(User1 user1) throws Exception {
 		if (!isUserExistsByID(String.valueOf(user1.getUserId())) && !isUserExists(user1)) {
+			logger.info("create1 user1id "+ user1.getUserId() +" inserted in DB");
 			final String insertSql = "insert into users1(userId,userName,userEmail,address) values(?,?,?,?)";
 			Object[] params = { user1.getUserId(), user1.getUserName(), user1.getUserEmail(), user1.getAddress() };
 			return jdbcTemplate.update(insertSql, params);
@@ -76,6 +80,7 @@ public class UserDAOImpl1 implements UserDAO1 {
 	@Transactional
 	public void deleteByUserId1(String userId1) throws Exception {
 		if (isUserExistsByID(userId1)) {
+			logger.info("Deleted userId "+ userId1 +" from DB");
 			final String deleteSql = "delete from users1 where userId=?";
 			jdbcTemplate.update(deleteSql, userId1);			
 		} else {
@@ -108,6 +113,7 @@ public class UserDAOImpl1 implements UserDAO1 {
 	@Override
 	public int updateUserbyId1(User1 user1) throws Exception {
 		if (isUserExistsByID(String.valueOf(user1.getUserId()))) {
+			logger.info("updateUserbyId1  "+ user1.getUserId() +" in DB");
 			final String updateSql = "update users1 set userName=? , userEmail=? , address=? where userId=?";
 			int rows = jdbcTemplate.update(updateSql, user1.getUserName(), user1.getUserEmail(), user1.getAddress(),
 					user1.getUserId());
