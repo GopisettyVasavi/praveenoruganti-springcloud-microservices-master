@@ -32,8 +32,7 @@ public class OrderManagementService {
 					@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value="5"),					
 					@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value="50"),
 					@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value="5000")
-    })					
-			
+    })			
 	public String createOrder(String orderid) throws Exception {
 		try {
 			HttpHeaders headers = new HttpHeaders();
