@@ -3,6 +3,13 @@ management:
     web:
       exposure:
         include: hystrix.stream
+        
+billingservice:        
+ ribbon:
+   eureka: disable
+   listOfServers: localhost:8091,localhost:8092
+   ServerListRefreshInterval: 2000
+   
 
 eureka:
   client:

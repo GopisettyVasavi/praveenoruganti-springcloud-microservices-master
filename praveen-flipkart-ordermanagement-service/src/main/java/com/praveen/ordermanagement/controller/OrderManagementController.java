@@ -24,6 +24,22 @@ import io.swagger.annotations.ApiOperation;
 public class OrderManagementController {
 	@Autowired
 	OrderManagementService orderManagementService;
+	@Autowired
+	FeignBillingServiceProxy billingserviceproxy;
+	
+
+	@PostMapping("/feign/submitorder")
+	public ResponseEntity<String> createOrderFeign(@Valid @RequestBody String orderid, UriComponentsBuilder builder) {
+		try {
+			String msg=billingserviceproxy.createOrder(orderid);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(builder.path("/rest/flipkartordermanagement/submitorder/").buildAndExpand(orderid).toUri());
+			return  ResponseEntity.status(HttpStatus.CREATED).body(msg);
+		}catch(Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(),e.getCause());
+		}
+
+	}
 
 	@PostMapping("/submitorder")
 	@ApiOperation(value = "Create new order")
@@ -38,5 +54,6 @@ public class OrderManagementController {
 		}
 
 	}
+	
 
 }
