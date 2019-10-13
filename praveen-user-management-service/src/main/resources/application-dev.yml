@@ -2,8 +2,8 @@
 
 eureka:
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
   instance:
@@ -27,7 +27,7 @@ server:
     
 logging:
      path: 
-     file: user-management-service.log
+     file: 
      level: 
        root: INFO 
        org: 
@@ -57,6 +57,13 @@ spring:
 #    user:
 #      name: praveen
 #      password: pcf
+    zipkin:
+      base-url: http://localhost:9411/
+    sleuth:
+      sampler:
+        probability: 1
+     
+
    
    jpa:
      show-sql: true 
@@ -80,11 +87,6 @@ spring:
     port: 5672
     username: guest
     password: guest
-    
-   zipkin:
-     base-url: http://localhost:9411/
-     
-     
 
 praveen-user-management-service:         
           rabbitmq:
