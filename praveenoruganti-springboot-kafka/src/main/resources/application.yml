@@ -1,7 +1,7 @@
 server:
   port: 9091
-#  servlet:
-#    contextPath: /praveen
+# servlet:
+#   contextPath: /praveen
 spring:
   application:
     name: praveen-springboot-kafka
