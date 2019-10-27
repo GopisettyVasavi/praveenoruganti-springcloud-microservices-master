@@ -7,3 +7,12 @@ server:
 spring:
   application:
     name: praveen-spring-cloud-eureka-server
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
