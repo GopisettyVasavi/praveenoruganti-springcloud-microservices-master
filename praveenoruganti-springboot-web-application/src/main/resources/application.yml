@@ -1,0 +1,25 @@
+spring:
+  application: praveenoruganti-springboot-web-application
+  mvc:
+   view:
+    prefix: /WEB-INF/view/
+    suffix: .jsp
+  jpa:
+     show-sql: true 
+     database: MYSQL
+     generate-ddl: true
+     
+  datasource:
+          type: com.zaxxer.hikari.HikariDataSource
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://root:password@localhost:3306/praveendb?reconnect=true
+          username: root
+          password: password
+          hikari:
+            connectionTimeout : 30000
+            idleTimeout : 600000
+            maxLifetime : 1800000
+            maximumPoolSize : 5
+ 
+server:
+   port: 9180
