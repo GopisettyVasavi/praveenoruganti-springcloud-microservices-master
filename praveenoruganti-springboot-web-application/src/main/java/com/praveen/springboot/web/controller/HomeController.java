@@ -14,8 +14,7 @@ import com.praveen.springboot.web.service.UserService;
 @Controller
 public class HomeController {
 
-	@Autowired
-	public UserService userService;
+
 
 	@GetMapping("/")
 	public String home(Map<String, Object> map) {
