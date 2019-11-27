@@ -28,3 +28,9 @@ Challenges of Microservices
 Spring Cloud solves the above challenges of microservices by using Netflix Eureka for service registry and discovery which is known as Naming Server ,Spring Cloud config which provides central GIT location for all the configuration files, Spring cloud sleuth for distributed tracing, Netflix Hystrix for fault tolerance which acts as circuit breaker, Netflix Ribbon for Client side load balancing and Netflix Zuul is a gateway service that provides dynamic routing, monitoring, resiliency, security.
 
 You can understand all the microservices,pcf and spring cloud concepts from my ebook https://www.facebook.com/groups/2340886582907696/permalink/2360752190921135/
+
+
+
+if you like this group you can provide your funds and for more details you can check my repo.
+
+https://github.com/praveenoruganti/praveenoruganti-repo-funding
