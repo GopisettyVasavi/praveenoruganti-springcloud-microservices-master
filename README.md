@@ -30,7 +30,3 @@ Spring Cloud solves the above challenges of microservices by using Netflix Eurek
 You can understand all the microservices,pcf and spring cloud concepts from my ebook https://www.facebook.com/groups/2340886582907696/permalink/2360752190921135/
 
 
-
-if you like this group you can provide your funds and for more details you can check my repo.
-
-https://github.com/praveenoruganti/praveenoruganti-repo-funding
